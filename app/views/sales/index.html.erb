@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Ventas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Comprador</th>
+      <th>Descripción del Item</th>
+      <th>Precio del Item</th>
+      <th>Total de Items</th>
+      <th>Dirección de vendedor</th>
+      <th>Vendedor</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sales.each do |sale| %>
+      <tr>
+        <td><%= sale.buyer.full_name %></td>
+        <td><%= sale.item.description %></td>
+        <td><%= sale.item.price %></td>
+        <td><%= sale.quantity %></td>
+        <td><%= sale.item.provider.address %></td>
+        <td><%= sale.item.provider.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Importar datos', import_data_sales_path %>
