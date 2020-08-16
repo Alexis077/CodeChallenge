@@ -1,7 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Ventas</h1>
-
+<br>
+<div>
+<%= link_to 'Importar archivo', import_data_sales_path %>
+</div>
+<br>
 <table>
   <thead>
     <tr>
@@ -15,19 +19,31 @@
   </thead>
 
   <tbody>
-    <% @sales.each do |sale| %>
-      <tr>
-        <td><%= sale.buyer.full_name %></td>
-        <td><%= sale.item.description %></td>
-        <td><%= sale.item.price %></td>
-        <td><%= sale.quantity %></td>
-        <td><%= sale.item.provider.address %></td>
-        <td><%= sale.item.provider.name %></td>
-      </tr>
-    <% end %>
+    <% if @sales.size == 0 %>
+        <tr>
+            <td colspan="6">
+                No hay registros
+            </td>
+        </tr>
+    <% else %>
+        <% @sales.each do |sale| %>
+        <tr>
+            <td><%= sale.buyer.full_name %></td>
+            <td><%= sale.item.description %></td>
+            <td><%= number_to_currency(sale.item.price) %></td>
+            <td><%= sale.quantity %></td>
+            <td><%= sale.item.provider.address %></td>
+            <td><%= sale.item.provider.name %></td>
+        </tr>
+        <% end %>
+    <% end%>
   </tbody>
 </table>
+<br>
+
+<div id="total-balance">
+    <strong>Balance total:</strong> <%= number_to_currency(total_balance(@sales), precision: 2) %>
+</div>
 
 <br>
 
-<%= link_to 'Importar datos', import_data_sales_path %>

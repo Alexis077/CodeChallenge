@@ -1,0 +1,15 @@
+
+h1{
+    text-align:center;
+}
+table{
+    margin:auto;
+    width: 80%;
+}
+table, th, td {
+    border: 1px solid black;
+    text-align: center;
+}
+#total-balance{
+    text-align: center;
+}
